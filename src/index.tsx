@@ -26,12 +26,12 @@ msalInstance.addEventCallback((event: EventMessage) => {
 initializeIcons();
 
 ReactDOM.render(
-    // <React.StrictMode>
-    <MsalProvider instance={msalInstance}>
-        {/* <Main /> */}
-        <MainDirect />
-    </MsalProvider>,
-    // </React.StrictMode>,
+    <React.StrictMode>
+        <MsalProvider instance={msalInstance}>
+            <Main />
+            {/* <MainDirect /> */}
+        </MsalProvider>,
+    </React.StrictMode>,
     document.getElementById("example")
 
 );

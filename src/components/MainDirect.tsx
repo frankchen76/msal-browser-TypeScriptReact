@@ -2,8 +2,6 @@ import * as React from "react";
 import { useState } from "react";
 import { About } from "./About";
 import { User } from "./User";
-import { UserForm } from "./UserForm";
-import { DetailForm } from "./DetailForm";
 import { Home } from "./Home";
 import { Header } from "./Header";
 import {

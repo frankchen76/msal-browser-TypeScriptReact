@@ -1,0 +1,23 @@
+.myQuill .ql-container{
+    height: 150px;
+}
+.richtexteditor2 .ql-container {
+    min-height: 10em;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    background: #fefcfc;
+}
+
+.richtexteditor2 .ql-toolbar {
+    background: #eaecec;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    border-bottom: none;
+}
+
+/* .ql-toolbar .ql-footer:before {
+    content: 'footer';
+  } */
+  .ql-editor .ql-footer {
+    background: #f7f7f7;
+  }

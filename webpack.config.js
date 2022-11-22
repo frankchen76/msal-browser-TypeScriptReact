@@ -2,22 +2,35 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.tsx',
+    entry: {
+        client: {
+            import: "./src/index.tsx"
+        }
+    },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist/')
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist/'),
+        library: "msal_browser_typescriptreact"
     },
     devtool: "source-map",
+    mode: "development",
     devServer: {
-        contentBase: 'dist',
-        https: true
+        https: {
+            key: 'C:\\Tools\\OpenSSL\\localhost\\localhost.key',
+            cert: 'C:\\Tools\\OpenSSL\\localhost\\localhost.crt'
+        },
     },
+    target: "web",
     module: {
         rules: [{
             test: /\.tsx?$/,
             loader: 'ts-loader',
             exclude: /node_modules/,
-        }, ]
+        },
+        {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader']
+        }]
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js"]
@@ -26,7 +39,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Test React App',
             // filename: 'dist/index.html',
-            template: 'index.html'
+            template: 'index.html',
+            filename: 'index.html',
+            chunks: ["client"]
             // Load a custom template (lodash by default)
         })
     ]

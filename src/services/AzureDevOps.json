@@ -1,0 +1,82 @@
+[
+    {
+        "id": "POD8",
+        "project": "POD8",
+        "areas": [
+            {
+                "id": 5,
+                "area": "GLIC",
+                "issues": [
+                    {
+                        "id": 1,
+                        "title": "OD4B Workshop"
+                    },
+                    {
+                        "id": 2,
+                        "title": "SPO support"
+                    },
+                    {
+                        "id": 3,
+                        "title": "Power Platform support"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "area": "eBay",
+                "issues": [
+                    {
+                        "id": 4,
+                        "title": "Graph API Workshop"
+                    },
+                    {
+                        "id": 5,
+                        "title": "Yammer support"
+                    },
+                    {
+                        "id": 6,
+                        "title": "Power Platform support"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "Frank",
+        "project": "Frank",
+        "areas": [
+            {
+                "id": 50,
+                "area": "Schwab",
+                "issues": [
+                    {
+                        "id": 10,
+                        "title": "Search Support"
+                    },
+                    {
+                        "id": 20,
+                        "title": "Group workshop"
+                    },
+                    {
+                        "id": 30,
+                        "title": "SP On-premise support"
+                    }
+                ]
+            },
+            {
+                "id": 60,
+                "area": "Transcational",
+                "issues": [
+                    {
+                        "id": 40,
+                        "title": "GM"
+                    },
+                    {
+                        "id": 50,
+                        "title": "Fidelity"
+                    }
+                ]
+            }
+        ]
+    }
+]

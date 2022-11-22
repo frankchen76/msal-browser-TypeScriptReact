@@ -1,11 +1,14 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { JsonOutput } from "./JsonOutput";
 import { PrimaryButton, Spinner, loadTheme, Stack } from "@fluentui/react";
 import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../authConfig";
+import { loginRequest, tokenRequestCouponAPI } from "../authConfig";
 import { callMsGraph } from "../graph";
 import { AccountInfo } from "@azure/msal-browser";
+import { CouponService } from "../services/CouponService";
+import { AppInsightsErrorBoundary, useAppInsightsContext, useTrackEvent, useTrackMetric } from "@microsoft/applicationinsights-react-js";
+import { reactPlugin } from "../services/ApplicationInsights";
 
 interface IHomeState {
     loading: boolean;
@@ -16,6 +19,24 @@ export const Home = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [jsonObj, setJsonObj] = useState<object>(null);
     const { instance, accounts } = useMsal();
+    const [count, setCount] = useState<number>(0);
+
+    const ai = useAppInsightsContext();
+    const trackComponent = useTrackMetric(ai, "Home");
+    const trackButtonClick = useTrackEvent(ai, "ApplicationInsights button click", count);
+
+    // useEffect(() => {
+
+    //     trackComponent();
+    // }, []);
+    // const metricData: IMetricTelemetry = {
+    //     average: engagementTime,
+    //     name: "React Component Engaged Time (seconds)",
+    //     sampleCount: 1
+    //   };
+    // const additionalProperties = { "Component Name": 'MyComponent' };
+    // ai.trackMetric(metricData, additionalProperties);
+    trackComponent();
 
     const _getMyInfoHandler = async (): Promise<void> => {
         //alert("hello");
@@ -34,17 +55,47 @@ export const Home = () => {
         //     callMsGraph(response.accessToken).then(response => setJsonObj(response));
         // });
 
-    }
+    };
     const _getMyEmailHandler = async (): Promise<void> => {
         //alert("hello");
         setLoading(true);
 
-    }
+    };
     const _getAllGroupsHandler = async (): Promise<void> => {
         //alert("hello");
         setLoading(true);
 
-    }
+    };
+    const _getCouponsHandler = async (): Promise<void> => {
+        setLoading(true);
+        // const token = await instance.acquireTokenSilent({
+        //     ...tokenRequestSPO,
+        //     account: accounts[0] as AccountInfo
+        // });
+        const token = await instance.acquireTokenPopup({
+            ...tokenRequestCouponAPI,
+            account: accounts[0] as AccountInfo
+        });
+        console.log(token.accessToken);
+        const couponService = new CouponService();
+        const couponItems = await couponService.getCoupons(token.accessToken);
+        setJsonObj(couponItems);
+        setLoading(false);
+
+    };
+    const _onAppInsightTrackErrorTest = () => {
+        try {
+            const a = 10 / 2;
+            throw "exception test";
+        } catch (error) {
+            ai.trackException(error, { userId: accounts[0].username, component: "Home", "method": "_onAppInsightTrackErrorTest" })
+        }
+    };
+    const _onAppInsightTrackEventTest = () => {
+        const c = count + 1;
+        setCount(c);
+        trackButtonClick(0);
+    };
 
     return (
         <div className="ms-Grid">
@@ -66,6 +117,9 @@ export const Home = () => {
                         <PrimaryButton text="Get All Groups" onClick={_getAllGroupsHandler} />
                         {/* <PrimaryButton text="Change Theme" onClick={this._applyTheme.bind(this)} /> */}
                     </Stack>
+                    <PrimaryButton text="ApplicationInsights Track Event test" onClick={_onAppInsightTrackEventTest} />
+                    <PrimaryButton text="ApplicationInsights Error test" onClick={_onAppInsightTrackErrorTest} />
+                    <PrimaryButton text="Get Coupons" onClick={_getCouponsHandler} />
                 </div>
             </div>
             <div className="ms-Grid-row">
@@ -78,6 +132,7 @@ export const Home = () => {
                 </div>
             </div>
         </div>
+
     );
 
 }

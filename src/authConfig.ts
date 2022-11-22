@@ -12,9 +12,13 @@ import { Configuration, LogLevel } from "@azure/msal-browser";
  */
 export const msalConfig: Configuration = {
     auth: {
-        // single tenant m365x725618 TypeScriptReactMSAL2.0
-        clientId: "7a417ade-0ade-494e-9bdb-01f369ce8836",
+        // single tenant m365x725618 TypeScriptReactMSAL2.0-MultiTenant_MSAccount
+        clientId: "af78eca8-fcbe-4326-a43c-be58d8da8f2a",
         authority: "https://login.microsoftonline.com/8a5ee357-7de0-4836-ab20-9173b12cdce9",
+
+        // // single tenant m365x725618 TypeScriptReactMSAL2.0
+        // clientId: "7a417ade-0ade-494e-9bdb-01f369ce8836",
+        // authority: "https://login.microsoftonline.com/8a5ee357-7de0-4836-ab20-9173b12cdce9",
 
         // multi-tenant common SPFxWorkshop.CouponAPI from M365x725618
         // clientId: "4dbe5736-bf2c-4efe-8d36-ec1afb4ebf94",
@@ -73,6 +77,14 @@ export const tokenRequestSPO = {
 export const tokenRequestMSGraph = {
     // scopes: ["AllSites.Read", "Sites.Search.All"]
     scopes: ["https://graph.microsoft.com/.default"]
+};
+export const tokenRequestWebBot = {
+    // scopes: ["AllSites.Read", "Sites.Search.All"]
+    scopes: ["api://f8c93908-51a2-47bd-b283-a49d656c5205/.default"]
+};
+export const tokenRequestCouponAPI = {
+    // scopes: ["AllSites.Read", "Sites.Search.All"]
+    scopes: ["api://4dbe5736-bf2c-4efe-8d36-ec1afb4ebf94/.default"]
 };
 
 /**
