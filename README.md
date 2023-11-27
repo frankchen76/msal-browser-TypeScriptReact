@@ -56,5 +56,8 @@ npm run start
 * if you want to start a browser after compile, replace `"start": "webpack-dev-server --https --hot --inline"` to `"start": "webpack-dev-server --https --hot --inline --open"`
 
 ## History
+* 1.0.2
+  * fixed @types/react version mismatch issues. 
+  * integrated with GitHub Action with Azure Web App deployment
 * 1.0.1
   * Upgraded msal v2.32.0

@@ -2,11 +2,9 @@ import { Dropdown, IDropdownOption, PrimaryButton, Spinner, TextField } from "@f
 import * as React from "react";
 import { useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { RichtextEditor } from "./RichtextEditor";
-import { RichtextEditor1, RichtextEditor2 } from "./RichtextEditor1";
-import { Sources, Delta } from "quill";
-import { QuillEditor } from "./QuillEditor";
-import { QuillComponent } from "./QuillComponent";
+// import { Sources, Delta } from "quill";
+// import { QuillEditor } from "./QuillEditor";
+// import { QuillComponent } from "./QuillComponent";
 
 type FormInput = {
     firstName: string;
@@ -194,9 +192,9 @@ export const UserForm1 = () => {
                         render={({ field }) => {
                             return (
                                 <div>
-                                    <QuillEditor description=""
+                                    {/* <QuillEditor description=""
                                         label="Description"
-                                        onChange={(html): void => field.onChange(html)} />
+                                        onChange={(html): void => field.onChange(html)} /> */}
                                     {/* <RichtextEditor2
                                             desc=""
                                             label="Comment:"

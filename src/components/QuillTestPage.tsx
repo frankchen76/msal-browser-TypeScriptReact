@@ -2,7 +2,7 @@ import { TextField } from "@fluentui/react";
 import * as React from "react";
 import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { QuillEditor } from "./QuillEditor";
+//import { QuillEditor } from "./QuillEditor";
 
 type FormInput = {
     firstName: string;
@@ -40,7 +40,7 @@ export const QuillTestPage = () => {
                                     </div>)
                             }}
                         />
-                        <QuillEditor description="" label="Comments:" />
+                        {/* <QuillEditor description="" label="Comments:" /> */}
                     </form>
                 </div>
             </div>
