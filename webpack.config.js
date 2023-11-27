@@ -19,6 +19,7 @@ module.exports = {
             key: 'C:\\Tools\\OpenSSL\\localhost\\localhost.key',
             cert: 'C:\\Tools\\OpenSSL\\localhost\\localhost.crt'
         },
+        allowedHosts: "all"
     },
     target: "web",
     module: {
