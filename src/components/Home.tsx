@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { JsonOutput } from "./JsonOutput";
 import { PrimaryButton, Spinner, loadTheme, Stack } from "@fluentui/react";
 import { useMsal } from "@azure/msal-react";
-import { loginRequest, tokenRequestCouponAPI } from "../authConfig";
+import { loginRequest, tokenRequestCouponAPI, tokenRequestCouponAPI_626552 } from "../authConfig";
 import { callMsGraph } from "../graph";
 import { AccountInfo } from "@azure/msal-browser";
 import { CouponService } from "../services/CouponService";
@@ -73,12 +73,31 @@ export const Home = () => {
         //     account: accounts[0] as AccountInfo
         // });
         const token = await instance.acquireTokenPopup({
-            ...tokenRequestCouponAPI,
+            //...tokenRequestCouponAPI,
+            ...tokenRequestCouponAPI_626552,
             account: accounts[0] as AccountInfo
         });
         console.log(token.accessToken);
         const couponService = new CouponService();
         const couponItems = await couponService.getCoupons(token.accessToken);
+        setJsonObj(couponItems);
+        setLoading(false);
+
+    };
+    const _getCouponsMeHandler = async (): Promise<void> => {
+        setLoading(true);
+        // const token = await instance.acquireTokenSilent({
+        //     ...tokenRequestSPO,
+        //     account: accounts[0] as AccountInfo
+        // });
+        const token = await instance.acquireTokenPopup({
+            //...tokenRequestCouponAPI,
+            ...tokenRequestCouponAPI_626552,
+            account: accounts[0] as AccountInfo
+        });
+        console.log(token.accessToken);
+        const couponService = new CouponService();
+        const couponItems = await couponService.getMe(token.accessToken);
         setJsonObj(couponItems);
         setLoading(false);
 
@@ -120,6 +139,7 @@ export const Home = () => {
                     <PrimaryButton text="ApplicationInsights Track Event test" onClick={_onAppInsightTrackEventTest} />
                     <PrimaryButton text="ApplicationInsights Error test" onClick={_onAppInsightTrackErrorTest} />
                     <PrimaryButton text="Get Coupons" onClick={_getCouponsHandler} />
+                    <PrimaryButton text="Get Coupons me" onClick={_getCouponsMeHandler} />
                 </div>
             </div>
             <div className="ms-Grid-row">

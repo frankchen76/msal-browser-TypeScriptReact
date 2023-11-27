@@ -30,7 +30,7 @@ ReactDOM.render(
         <MsalProvider instance={msalInstance}>
             <Main />
             {/* <MainDirect /> */}
-        </MsalProvider>,
+        </MsalProvider>
     </React.StrictMode>,
     document.getElementById("example")
 

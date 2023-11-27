@@ -7,9 +7,29 @@ import {
 } from "react-router-dom";
 import { SettingServiceContext } from "../services/ServiceContext";
 import { appInsights } from "../services/ApplicationInsights";
+import { Stack } from "@fluentui/react";
+import { WelcomeName } from "./WelcomeName";
+import { SignInSignOutButton } from "./SignInSignOutButton";
 
 export interface IHeaderProps {
     account?: string;
+}
+
+export const LoginHeader = () => {
+    const fixStyle: React.CSSProperties = {
+        "overflow": "hidden",
+        "position": "fixed",
+        "top": 0
+
+    };
+    return (
+        <div>
+            <Stack horizontal horizontalAlign="space-evenly" style={fixStyle}>
+                <WelcomeName />
+                <SignInSignOutButton />
+            </Stack>
+        </div>
+    );
 }
 
 export const Header = () => {

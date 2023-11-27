@@ -7,7 +7,7 @@ import { DetailForm } from "./DetailForm";
 import { DetailForm1 } from "./DetailForm1";
 import { QuillTestPage } from "./QuillTestPage";
 import { Home } from "./Home";
-import { Header } from "./Header";
+import { Header, LoginHeader } from "./Header";
 import {
     BrowserRouter,
     HashRouter,
@@ -40,6 +40,7 @@ export const Main = () => {
     };
     const _loginHandler = () => {
         instance.loginRedirect(loginRequest).catch(e => { console.log(e); });
+        //instance.loginPopup(loginRequest).catch(e => { console.log(e); });
     }
     const callback = (settingService: SettingService) => {
         SetSettingService(settingService);
@@ -59,6 +60,11 @@ export const Main = () => {
                             <div className="ms-Grid" style={style}>
                                 {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
+                                <div className="ms-Grid-row">
+                                    <div className="ms-Grid-col ms-sm12 ms-md12 ms-lg12">
+                                        <LoginHeader />
+                                    </div>
+                                </div>
                                 <div className="ms-Grid-row">
                                     <div className="ms-Grid-col ms-sm12 ms-md12 ms-lg12">
                                         <Header />

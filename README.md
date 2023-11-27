@@ -54,3 +54,7 @@ npm run start
 ```
 * you can open up a default browser to access  https://localhost:8080/
 * if you want to start a browser after compile, replace `"start": "webpack-dev-server --https --hot --inline"` to `"start": "webpack-dev-server --https --hot --inline --open"`
+
+## History
+* 1.0.1
+  * Upgraded msal v2.32.0

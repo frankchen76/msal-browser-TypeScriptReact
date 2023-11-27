@@ -18,7 +18,26 @@ export interface ICouponItem {
 
 export class CouponService {
     public async getCoupons(accessToken: string): Promise<ICouponItem[]> {
-        const url = "https://m365x725618-couponapi.azurewebsites.net/api/coupon";
+        //const url = "https://m365x725618-couponapi.azurewebsites.net/api/coupon";
+        const url = "https://mngenv626552-couponapi.azurewebsites.net/api/coupon";
+        const headers = new Headers();
+        const bearer = `Bearer ${accessToken}`;
+
+        headers.append("Authorization", bearer);
+
+        const options = {
+            method: "GET",
+            headers: headers
+        };
+
+        return fetch(url, options)
+            .then(response => response.json())
+            .catch(error => console.log(error));
+
+    }
+    public async getMe(accessToken: string): Promise<ICouponItem[]> {
+        //const url = "https://m365x725618-couponapi.azurewebsites.net/api/coupon";
+        const url = "https://mngenv626552-couponapi.azurewebsites.net/api/me";
         const headers = new Headers();
         const bearer = `Bearer ${accessToken}`;
 
